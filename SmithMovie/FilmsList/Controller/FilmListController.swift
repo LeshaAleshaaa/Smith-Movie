@@ -51,8 +51,10 @@ final class FilmListController: UIViewController {
             self.results = item
             DispatchQueue.main.async {
                 Constants.totalPages = item.total_pages ?? Constants.firstScore
-                self.dataArray.append(contentsOf: item.results!)
-                self.tableView.reloadData()
+                if let someItem = item.results {
+                    self.dataArray.append(contentsOf: someItem)
+                    self.tableView.reloadData()
+                }
             }
         })
     }
