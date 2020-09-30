@@ -2,7 +2,7 @@
 //  CustomData.swift
 //  SmithMovie
 //
-//  Created by Алексей Смицкий on 07.09.2020.
+//  Created by Алексей Смицкий on 28.09.2020.
 //  Copyright © 2020 Смицкий А.Д. All rights reserved.
 //
 
@@ -35,7 +35,7 @@ final class FilmCell: UITableViewCell {
     private lazy var filmRating = UILabel()
     private lazy var filmImage = UIImageView()
     private lazy var ratingImage = UIImageView()
-    private lazy var filmOverview = UITextView()
+    private lazy var filmOverview = UILabel()
     
     // MARK: - Initalization
     
@@ -76,9 +76,9 @@ private extension FilmCell {
     
     func setFilmOverview() {
         filmOverview.font = Constants.filmOverviewFont
-        filmOverview.textContainer.maximumNumberOfLines = Constants.filmOverViewLines
         filmOverview.backgroundColor = .systemGray5
-        filmOverview.textContainer.lineBreakMode = .byTruncatingTail
+        filmOverview.numberOfLines = .bitWidth
+        filmOverview.lineBreakMode = .byTruncatingTail
     }
 }
 
@@ -121,14 +121,14 @@ private extension FilmCell {
             filmTitle.top.equalTo(cellView.snp.top).offset(Constants.viewsOffsets)
             filmTitle.left.equalTo(filmImage.snp.right).offset(Constants.viewsOffsets)
             filmTitle.right.equalTo(cellView.snp.right).offset(Constants.viewsMinusOffsets)
-            
+            filmTitle.height.equalTo(30)
         }
         
         filmOverview.snp.makeConstraints { (filmOverview) in
             filmOverview.top.equalTo(filmTitle.snp.bottom).offset(Constants.viewsOffsets)
             filmOverview.left.equalTo(filmImage.snp.right).offset(Constants.viewsOffsets)
             filmOverview.right.equalTo(cellView.snp.right).offset(Constants.viewsMinusOffsets)
-            filmOverview.bottom.equalTo(filmImage.snp.centerY).offset(Constants.filmOverViewOffset)
+            filmOverview.bottom.equalTo(filmImage.snp.bottom)
         }
         
         ratingImage.snp.makeConstraints { (ratingImage) in

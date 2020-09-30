@@ -20,6 +20,11 @@
 		1D35FD6125053EDB00163354 /* FilmListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D35FD6025053EDB00163354 /* FilmListController.swift */; };
 		1D7D6738250BBA14007A5510 /* IReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7D6737250BBA14007A5510 /* IReachability.swift */; };
 		1D7D673A250BBA2C007A5510 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7D6739250BBA2C007A5510 /* Reachability.swift */; };
+		1DCA08B32524874D00C0FD06 /* ValuesConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCA08B22524874D00C0FD06 /* ValuesConstants.swift */; };
+		1DCA08B925248E0F00C0FD06 /* ParsingResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCA08B825248E0F00C0FD06 /* ParsingResults.swift */; };
+		1DEA513F2524B14F00EDFF85 /* MovieInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEA513E2524B14E00EDFF85 /* MovieInfoView.swift */; };
+		1DEA51422524D10C00EDFF85 /* FilmListControllerTableExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEA51412524D10C00EDFF85 /* FilmListControllerTableExtension.swift */; };
+		1DEA51482524D2B900EDFF85 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEA51472524D2B900EDFF85 /* Constants.swift */; };
 		1DEBF39B250699B900948CF4 /* FilmCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEBF39A250699B900948CF4 /* FilmCell.swift */; };
 		1DFF4C2B2507D6F300D95F5A /* FilmInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFF4C2A2507D6F300D95F5A /* FilmInfoViewController.swift */; };
 		8C4B4F14A29A72C4FA36782E /* Pods_SmithMovie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E48FA5E96560B0E56F1649D4 /* Pods_SmithMovie.framework */; };
@@ -41,6 +46,11 @@
 		1D35FD6025053EDB00163354 /* FilmListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmListController.swift; sourceTree = "<group>"; };
 		1D7D6737250BBA14007A5510 /* IReachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IReachability.swift; sourceTree = "<group>"; };
 		1D7D6739250BBA2C007A5510 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		1DCA08B22524874D00C0FD06 /* ValuesConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValuesConstants.swift; sourceTree = "<group>"; };
+		1DCA08B825248E0F00C0FD06 /* ParsingResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParsingResults.swift; sourceTree = "<group>"; };
+		1DEA513E2524B14E00EDFF85 /* MovieInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieInfoView.swift; sourceTree = "<group>"; };
+		1DEA51412524D10C00EDFF85 /* FilmListControllerTableExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmListControllerTableExtension.swift; sourceTree = "<group>"; };
+		1DEA51472524D2B900EDFF85 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		1DEBF39A250699B900948CF4 /* FilmCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmCell.swift; sourceTree = "<group>"; };
 		1DFF4C2A2507D6F300D95F5A /* FilmInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmInfoViewController.swift; sourceTree = "<group>"; };
 		7464D19039C86CCFE9875A83 /* Pods-SmithMovie.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmithMovie.release.xcconfig"; path = "Target Support Files/Pods-SmithMovie/Pods-SmithMovie.release.xcconfig"; sourceTree = "<group>"; };
@@ -80,6 +90,7 @@
 		1D35FD4525053DBF00163354 /* SmithMovie */ = {
 			isa = PBXGroup;
 			children = (
+				1D35FD4625053DBF00163354 /* AppDelegate.swift */,
 				1DBB041B2523A2600015975B /* FilmsList */,
 				1DAF60B1250E44F00097C385 /* MovieInfo */,
 				1DBB041A2523A2280015975B /* Storyboard */,
@@ -87,7 +98,6 @@
 				1DBB041D2523A2890015975B /* Helpers */,
 				1D7D6736250BBA05007A5510 /* Network */,
 				1D35FD5E25053E5300163354 /* Supports */,
-				1D35FD4625053DBF00163354 /* AppDelegate.swift */,
 			);
 			path = SmithMovie;
 			sourceTree = "<group>";
@@ -119,7 +129,6 @@
 		1D35FD5E25053E5300163354 /* Supports */ = {
 			isa = PBXGroup;
 			children = (
-				1DE78570250E470500009AD0 /* Products */,
 				1D35FD5425053DC100163354 /* Info.plist */,
 				1D35FD4F25053DC100163354 /* Assets.xcassets */,
 			);
@@ -150,6 +159,7 @@
 		1DAF60B1250E44F00097C385 /* MovieInfo */ = {
 			isa = PBXGroup;
 			children = (
+				1DEA514B2524D30500EDFF85 /* View */,
 				1DAF60B2250E45110097C385 /* Model */,
 				1DAF60B4250E452B0097C385 /* Controller */,
 			);
@@ -183,6 +193,7 @@
 		1DBB041B2523A2600015975B /* FilmsList */ = {
 			isa = PBXGroup;
 			children = (
+				1DEA51442524D18A00EDFF85 /* Helpers */,
 				1D35FD5B25053E4500163354 /* Model */,
 				1D35FD5C25053E4A00163354 /* View */,
 				1D35FD5D25053E4D00163354 /* Controller */,
@@ -194,15 +205,27 @@
 			isa = PBXGroup;
 			children = (
 				1D37F9C4250BBBA500D8EC4E /* Extensions */,
+				1DCA08B22524874D00C0FD06 /* ValuesConstants.swift */,
+				1DCA08B825248E0F00C0FD06 /* ParsingResults.swift */,
+				1DEA51472524D2B900EDFF85 /* Constants.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
 		};
-		1DE78570250E470500009AD0 /* Products */ = {
+		1DEA51442524D18A00EDFF85 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				1DEA51412524D10C00EDFF85 /* FilmListControllerTableExtension.swift */,
 			);
-			path = Products;
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		1DEA514B2524D30500EDFF85 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1DEA513E2524B14E00EDFF85 /* MovieInfoView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		8047680575A7B0960E82BFDA /* Pods */ = {
@@ -337,14 +360,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D28C3FE250FD3B600E9AD96 /* NetworkLayer.swift in Sources */,
+				1DCA08B32524874D00C0FD06 /* ValuesConstants.swift in Sources */,
+				1DEA51422524D10C00EDFF85 /* FilmListControllerTableExtension.swift in Sources */,
 				1D35FD4725053DBF00163354 /* AppDelegate.swift in Sources */,
 				1D35FD6125053EDB00163354 /* FilmListController.swift in Sources */,
 				1D7D6738250BBA14007A5510 /* IReachability.swift in Sources */,
+				1DCA08B925248E0F00C0FD06 /* ParsingResults.swift in Sources */,
 				1D28C3FA250E4B2400E9AD96 /* Alert.swift in Sources */,
 				1DEBF39B250699B900948CF4 /* FilmCell.swift in Sources */,
 				1DFF4C2B2507D6F300D95F5A /* FilmInfoViewController.swift in Sources */,
+				1DEA51482524D2B900EDFF85 /* Constants.swift in Sources */,
 				1D7D673A250BBA2C007A5510 /* Reachability.swift in Sources */,
 				1D2137D425225D1400738F8A /* Moya.swift in Sources */,
+				1DEA513F2524B14F00EDFF85 /* MovieInfoView.swift in Sources */,
 				1D28C3FC250E4D0700E9AD96 /* INetworkLayer.swift in Sources */,
 				1D35407B25058B5B00C13A67 /* FilmsModel.swift in Sources */,
 				1D22103A250BCE5F00590367 /* TrailersModel.swift in Sources */,

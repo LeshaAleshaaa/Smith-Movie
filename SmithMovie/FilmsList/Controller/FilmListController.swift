@@ -2,7 +2,7 @@
 //  MainViewController.swift
 //  SmithMovie
 //
-//  Created by Алексей Смицкий on 06.09.2020.
+//  Created by Алексей Смицкий on 28.09.2020.
 //  Copyright © 2020 Смицкий А.Д. All rights reserved.
 //
 
@@ -12,11 +12,14 @@ import SnapKit
 // MARK: - MainViewController
 
 final class FilmListController: UIViewController {
-        
+       
+    // MARK: - Public properties
+    
+    lazy var dataArray = [Info]()
+
     // MARK: - Private properties
     
     private lazy var tableView = UITableView()
-    private lazy var dataArray = [Info]()
     private lazy var reachability: IReachability = Reachability()
     private lazy var results = Results()
     private var parsingResults: INetworkLayer?
@@ -35,22 +38,15 @@ final class FilmListController: UIViewController {
         checkInternet()
     }
     
-    // MARK: - Private methods
+    // MARK: - Public methods
     
-    private func checkInternet() {
-        if !reachability.isConnectedToNetwork {
-            alert(title: Constants.alertTitle,
-                  message: Constants.alertMesage)
-        }
-    }
-    
-    private func loadData(page: Int, baseApi: String) {
+    func loadData(page: Int, baseApi: String) {
         parsingResults = NetworkLayer()
         parsingResults?.getFilms(page: page, baseApi: baseApi, complition: { [weak self] item in
             guard let self = self else { return }
             self.results = item
             DispatchQueue.main.async {
-                Constants.totalPages = item.total_pages ?? Constants.firstScore
+                ValuesConstants.totalPages = item.total_pages ?? ValuesConstants.firstScore
                 if let someItem = item.results {
                     self.dataArray.append(contentsOf: someItem)
                     self.tableView.reloadData()
@@ -58,41 +54,18 @@ final class FilmListController: UIViewController {
             }
         })
     }
+    
+    // MARK: - Private methods
+    
+    private func checkInternet() {
+        if !reachability.isConnectedToNetwork {
+            alert(title: ValuesConstants.alertTitle,
+                  message: ValuesConstants.alertMesage)
+        }
+    }
 }
 
 // MARK: - Setups
-
-extension FilmListController: UITableViewDelegate { }
-
-extension FilmListController: UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataArray.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = FilmCell()
-        
-        cell.cellData = dataArray[indexPath.row]
-        
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
-        if Constants.page < Constants.totalPages && indexPath.row == dataArray.count - Constants.firstScore {
-            Constants.page += Constants.firstScore
-            loadData(page: Constants.page, baseApi: URLList.basicApi)
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let filmInfoController = FilmInfoViewController()
-        filmInfoController.idForm = dataArray[indexPath.row].id
-        navigationController?.pushViewController(filmInfoController, animated: true)
-    }
-}
 
 private extension FilmListController {
     
@@ -102,13 +75,13 @@ private extension FilmListController {
     }
     
     func setScreen() {
-        title = Constants.titleText
-        loadData(page: Constants.firstScore, baseApi: URLList.basicApi)
+        title = ValuesConstants.titleText
+        loadData(page: ValuesConstants.firstScore, baseApi: URLList.basicApi)
     }
     
     func setTableView() {
-        tableView.register(FilmCell.self, forCellReuseIdentifier: Constants.cellName)
-        tableView.rowHeight = view.bounds.height / Constants.viewBoundsDel
+        tableView.register(FilmCell.self, forCellReuseIdentifier: ValuesConstants.cellName)
+        tableView.rowHeight = view.bounds.height / ValuesConstants.viewBoundsDel
         tableView.delegate = self
         tableView.dataSource = self
     }
@@ -142,7 +115,7 @@ private extension FilmListController {
 
 private extension FilmListController {
     
-    enum Constants {
+    enum Consants {
         
         static let cellName: String = "cell"
         
