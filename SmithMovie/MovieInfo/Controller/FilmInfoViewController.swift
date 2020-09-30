@@ -7,39 +7,37 @@
 //
 
 import UIKit
-import WebKit
 
 // MARK: - FilmInfoViewController
 
 final class FilmInfoViewController: UIViewController {
-       
+    
     // MARK: - Public properties
     
-    var id: Int?
+    public var id: Int?
     
     // MARK: - Private properties
     
     private lazy var filmParsing = FilmInfoParsing()
-
+    
     // MARK: - Life Cycle
     
     override func loadView() {
-       self.view = CustomView()
+        self.view = FilmInfoView()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-        filmParsing.loadFilmInfoData(id: id)
-        filmParsing.loadFilmTrailer(id: id)
+        setupElements()
     }
-        
+    
     // MARK: - Selectors
     
     @objc
     private func shareFilm() {
-        let URLString = "\(URLList.urlFirstTitle)\(filmParsing.idForm ?? Constants.nilId)"
-        let items = ["\(Constants.lookFilm) \(Constants.nilText)\(Constants.shareFilmText)\(URLString)"]
+        let URLString = "\(URLList.urlFirstTitle)\(id ?? Constants.nilId)"
+        let items = ["\(Constants.lookFilm)\(Constants.shareFilmText)\(URLString)"]
         let activity = UIActivityViewController(activityItems: items, applicationActivities: nil)
         present(activity, animated: true, completion: nil)
     }
@@ -58,5 +56,20 @@ private extension FilmInfoViewController {
             barButtonSystemItem: .action,
             target: self,
             action: #selector(shareFilm))
+    }
+    
+    func setupElements() {
+        filmParsing.loadFilmTrailer(id: id) { item in
+            DispatchQueue.main.async {
+                (self.view as? FilmInfoView)?.setupTrailerView(
+                    trailerKey: item.results?.first?.key ?? Constants.emptyString)
+            }
+        }
+        
+        filmParsing.loadFilmInfoData(id: id) { item in
+            DispatchQueue.main.async {
+                (self.view as? FilmInfoView)?.setupViews(title: item.title!, name: item.overview!)
+            }
+        }
     }
 }

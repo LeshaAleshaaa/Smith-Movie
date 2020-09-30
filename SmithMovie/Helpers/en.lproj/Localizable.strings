@@ -1,0 +1,17 @@
+/* 
+  Localizable.strings
+  SmithMovie
+
+  Created by Алексей Смицкий on 30.09.2020.
+  Copyright © 2020 Смицкий А.Д. All rights reserved.
+*/
+
+
+"Font" = "AppleSDGothicNeo-Thin";
+"LookFilm" = "Look film";
+"Share" = ",site: ";
+"Error" = "init(coder:) has not been implemented";
+"Warning" = "Warning!";
+"InternetLost" = "No internet connection, check your connection and restart the app!";
+"Title" = "Smith Movie App";
+"Cell" = "cell";

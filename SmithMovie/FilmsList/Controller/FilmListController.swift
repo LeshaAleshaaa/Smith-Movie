@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-// MARK: - MainViewController
+// MARK: - FilmListController
 
 final class FilmListController: UIViewController {
        
@@ -23,6 +23,7 @@ final class FilmListController: UIViewController {
     private lazy var reachability: IReachability = Reachability()
     private lazy var results = Results()
     private var parsingResults: INetworkLayer?
+    private lazy var parsing = FilmInfoParsing()
     
     // MARK: - Life Cycle
     
@@ -40,13 +41,13 @@ final class FilmListController: UIViewController {
     
     // MARK: - Public methods
     
-    func loadData(page: Int, baseApi: String) {
+    public func loadData(page: Int, baseApi: String) {
         parsingResults = NetworkLayer()
         parsingResults?.getFilms(page: page, baseApi: baseApi, complition: { [weak self] item in
             guard let self = self else { return }
             self.results = item
             DispatchQueue.main.async {
-                ValuesConstants.totalPages = item.total_pages ?? ValuesConstants.firstScore
+                Constants.totalPages = item.total_pages ?? Constants.firstScore
                 if let someItem = item.results {
                     self.dataArray.append(contentsOf: someItem)
                     self.tableView.reloadData()
@@ -59,8 +60,8 @@ final class FilmListController: UIViewController {
     
     private func checkInternet() {
         if !reachability.isConnectedToNetwork {
-            alert(title: ValuesConstants.alertTitle,
-                  message: ValuesConstants.alertMesage)
+            alert(title: Constants.alertTitle,
+                  message: Constants.alertMesage)
         }
     }
 }
@@ -75,13 +76,13 @@ private extension FilmListController {
     }
     
     func setScreen() {
-        title = ValuesConstants.titleText
-        loadData(page: ValuesConstants.firstScore, baseApi: URLList.basicApi)
+        title = Constants.titleText
+        loadData(page: Constants.firstScore, baseApi: URLList.basicApi)
     }
     
     func setTableView() {
-        tableView.register(FilmCell.self, forCellReuseIdentifier: ValuesConstants.cellName)
-        tableView.rowHeight = view.bounds.height / ValuesConstants.viewBoundsDel
+        tableView.register(FilmCell.self, forCellReuseIdentifier: Constants.cellName)
+        tableView.rowHeight = view.bounds.height / Constants.viewBoundsDel
         tableView.delegate = self
         tableView.dataSource = self
     }
@@ -108,28 +109,5 @@ private extension FilmListController {
             tableView.right.equalTo(view)
             tableView.bottom.equalTo(view)
         }
-    }
-}
-
-// MARK: - Constants
-
-private extension FilmListController {
-    
-    enum Consants {
-        
-        static let cellName: String = "cell"
-        
-        static let titleText: String = "Smith Movie App"
-        static let naviBarColor: UIColor = .black
-        
-        static let alertTitle: String = "Внимание"
-        static let alertMesage: String =
-            "Отсутствует связь с интернетом, проверьте соединение и перезапустите приложение!"
-        
-        static var page: Int = 1
-        static var totalPages: Int = 1
-        static let firstScore: Int = 1
-        
-        static let viewBoundsDel: CGFloat = 2.5
     }
 }

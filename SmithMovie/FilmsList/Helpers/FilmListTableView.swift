@@ -27,9 +27,9 @@ extension FilmListController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
-        if ValuesConstants.page < ValuesConstants.totalPages && indexPath.row == dataArray.count - ValuesConstants.firstScore {
-            ValuesConstants.page += ValuesConstants.firstScore
-            loadData(page: ValuesConstants.page, baseApi: URLList.basicApi)
+        if Constants.page < Constants.totalPages && indexPath.row == dataArray.count - Constants.firstScore {
+            Constants.page += Constants.firstScore
+            loadData(page: Constants.page, baseApi: URLList.basicApi)
         }
     }
     

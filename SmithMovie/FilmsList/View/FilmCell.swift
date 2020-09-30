@@ -64,18 +64,18 @@ private extension FilmCell {
     }
     
     func setRatingView() {
-        ratingImage.image = Constants.ratingImage
-        filmRating.font = Constants.ratingFont
+        ratingImage.image = Images.ratingImage
+        filmRating.font = Fonts.ratingFont
     }
     
     func setFilmTitle() {
         filmTitle.backgroundColor = .systemYellow
         filmTitle.textAlignment = .center
-        filmTitle.font = Constants.filmTitleFont
+        filmTitle.font = Fonts.filmTitleFont
     }
     
     func setFilmOverview() {
-        filmOverview.font = Constants.filmOverviewFont
+        filmOverview.font = Fonts.filmOverviewFont
         filmOverview.backgroundColor = .systemGray5
         filmOverview.numberOfLines = .bitWidth
         filmOverview.lineBreakMode = .byTruncatingTail
@@ -121,7 +121,7 @@ private extension FilmCell {
             filmTitle.top.equalTo(cellView.snp.top).offset(Constants.viewsOffsets)
             filmTitle.left.equalTo(filmImage.snp.right).offset(Constants.viewsOffsets)
             filmTitle.right.equalTo(cellView.snp.right).offset(Constants.viewsMinusOffsets)
-            filmTitle.height.equalTo(30)
+            filmTitle.height.equalTo(Constants.filmTitleHeight)
         }
         
         filmOverview.snp.makeConstraints { (filmOverview) in
@@ -142,35 +142,5 @@ private extension FilmCell {
             filmRating.centerY.equalTo(ratingImage.snp.centerY).offset(Constants.ratingCenterY)
             filmRating.centerX.equalTo(ratingImage.snp.centerX)
         }
-    }
-}
-
-// MARK: - Constants
-
-private extension FilmCell {
-    
-    enum Constants {
-        
-        static let errorText: String = "init(coder:) has not been implemented"
-        
-        static let ratingWidth: CGFloat = 50
-        static let ratighHeight: CGFloat = 50
-        
-        static let ratingImage = UIImage(named: "rating")
-        static let ratingFont = UIFont(name: "AppleSDGothicNeo-Thin", size: 10.0)
-        static let ratingCenterY: CGFloat = 4
-        
-        static let emptyString: String = ""
-        static let emptyDouble: Double = 0
-        
-        static let filmTitleFont = UIFont(name: "AppleSDGothicNeo-Thin", size: 18.0)
-        static let filmOverviewFont = UIFont(name: "AppleSDGothicNeo-Thin", size: 16.0)
-        
-        static let viewsOffsets: CGFloat = 10
-        static let viewsMinusOffsets: CGFloat = -10
-        
-        static let imageWidth: CGFloat = 200
-        static let filmOverViewLines: Int = 5
-        static let filmOverViewOffset: CGFloat = 40
     }
 }
